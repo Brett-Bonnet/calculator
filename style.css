@@ -1,0 +1,105 @@
+
+
+html {
+  background-image: url("old_mathematics.png")
+ 
+  
+}
+
+
+.container {  
+  background-image: url("green_cup.png");
+  margin: auto;
+  height: 500px;
+  width: 400px;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  border-radius: 20px;
+
+}
+
+.display {
+  padding-top: 5px;
+  border-radius: 10px;
+  width: 350px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.5em;
+  background-image: linear-gradient(to bottom right, #e4b55e, #fdea8f);
+  font-family: 'Press Start 2P', cursive;
+  position: relative;
+}
+
+#result {
+  	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin-right: 1em;
+    font-size: 200% 	
+}
+
+#arguments {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-right: 1em;
+	margin-top: 0.5em;
+	
+	
+}
+
+
+.numbers {
+  display: grid;
+  grid-template-columns: 67px 67px 67px 67px;
+  grid-template-rows: 33% 33% 33%;
+  height: 325px;
+  width: 270px;
+}
+
+.operators {
+  display: grid;
+  height: 325px;
+  width: 80px;
+    
+  
+}
+
+button {
+   border-radius: 10px;
+   text-align: center;
+   transition: 0.2s;
+   font-size: 1.5em;
+   font-family: 'Unica One', cursive;
+}
+
+button:hover {
+	transform: scale(1.025);
+	
+	
+	
+}
+
+.numbutton {
+  background-image: linear-gradient(to bottom right, #827d7d, #fff1f1);
+  border-radius: 10px;
+}
+
+.operbutton {
+	background-image: linear-gradient(to bottom right, #ca8d42, #ffff67);
+	
+}
+
+.center {
+  display: flex;
+  margin-top: 1em;  
+  margin-left: auto;
+  margin-right: auto;
+  height: 325px;
+  width: 350px;
+  
+
+
+
+}
