@@ -1,22 +1,40 @@
 
 const numBtn = document.querySelectorAll('.numbutton');
 const operBtn = document.querySelectorAll('.operbutton');
-let crntArgs = document.getElementById('arguments');
-let result = document.getElementById('result');
-let array = new Array();
+const crntArgs = document.getElementById('arguments');
+const result = document.getElementById('result');
+let array = [];
+let display = 0;
+let newArray = [];
 
 
-
-numBtn.forEach(numbutton => numbutton.addEventListener('click', getNum));
-operBtn.forEach(operbutton => operbutton.addEventListener('click', getNum));
+result.textContent = display 
 
 
+numBtn.forEach(button => button.addEventListener('click', runCalc));
+operBtn.forEach(button => button.addEventListener('click', runCalc));
 
-function getNum(e) {
-	let current = e.target.firstChild.nodeValue;
-    result.textContent = current;
-	array.push(current);
-	console.log(array);
-	crntArgs.textContent = array.join(' ');
+
+function runCalc(e) {
+let current = e.target.firstChild.nodeValue;
+
 }
 
+
+
+
+function add(a, b) {
+  return a + b;
+}
+
+function subtract(a, b) {
+  return a - b;
+}
+
+function sum(array) {
+  return array.reduce((current, total) => total + current, 0);
+}
+
+function multiply(array) {
+  return array.reduce((current, total) => total * current, 1);
+}

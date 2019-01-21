@@ -15,6 +15,7 @@ html {
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
   border-radius: 20px;
+  box-shadow: 5px 5px 5px gray;
 
 }
 
@@ -72,6 +73,7 @@ button {
    transition: 0.2s;
    font-size: 1.5em;
    font-family: 'Unica One', cursive;
+   
 }
 
 button:hover {
