@@ -24,20 +24,28 @@ let current = e.target.firstChild.nodeValue;
 let i = array.findIndex(el => isNaN(el) && el !== '.');
 let j = i + 1;
 if (current === '=') {
-    arguments.firstArg = array.slice(0, i);
-	arguments.secondArg = array.slice(j);
-	arguments.operator = array[i];
-    console.log(arguments.firstArg);
-	console.log(arguments.secondArg);
-	console.log(arguments.operator);
+  let first = arguments.firstArg = parseFloat(array.slice(0, i).join(''));
+  let second = arguments.secondArg = parseFloat(array.slice(j).join(''));
+  let oper = arguments.operator = array[i];
+	console.log(first);
+	console.log(second);
+	console.log(oper);
+    console.log(getResult(first, second, oper))
+	 	 
 } else {
   array.push(current);
   console.log(array);
 		
   }
-
 }
 
+function getResult(a, b, c) {
+	return c === '+' ? a + b
+	     : c === '-' ? a - b
+		 : c === '*' ? a * b
+		 : c === '/' ? a / b
+         : false;		 
+}
 
 
 
@@ -50,8 +58,12 @@ function subtract(a, b) {
   return a - b;
 }
 
+function multiply(a, b) {
+  return a * b;
+}
 
-function multiply(array) {
-  return array.reduce((current, total) => total * current, 1);
+function divide(a, b) {
+	return a / b;
+	
 }
 
