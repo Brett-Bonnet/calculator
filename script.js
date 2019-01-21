@@ -5,12 +5,17 @@ const crntArgs = document.getElementById('arguments');
 const result = document.getElementById('result');
 const equalBtn = document.getElementById('#equals');
 let display = 0;
-let arguments = {};
+
+let arguments = {
+  firstArg: [],
+  operator: '',
+  secondArg: [],	
+}
+
 let array = [];
-let newArray = [];
 
 
-result.textContent = display 
+result.textContent = display ;
 
 numBtn.forEach(button => button.addEventListener('click', runCalc));
 operBtn.forEach(button => button.addEventListener('click', runCalc));
@@ -18,24 +23,25 @@ operBtn.forEach(button => button.addEventListener('click', runCalc));
 
 function runCalc(e) {
 let current = e.target.firstChild.nodeValue;
-  if(ifNaN(current)) {
-   console.log('operator')
-   checkOperator();
-  } else {
-  	array.push(current)
-  	arguments.holding = [array.join('')]
-  	console.log(arguments.holding);
-  }
+let i = (array.indexOf('+') || array.indexOf('-') || array.indexOf('*') || array.indexOf('/'));
+let j = i + 1;
+if (current === '=') {
+    arguments.firstArg = array.slice(0, i);
+	arguments.secondArg = array.slice(j);
+	arguments.operator = array[i];
+    console.log(arguments.firstArg);
+	console.log(arguments.secondArg);
+	console.log(arguments.operator);
+} else {
+  array.push(current);
+  console.log(array);
+		
+}
+
 }
 
 
 
-
-function checkOperator(arr, val) {
-  return arr.some(function(arrVal) {
-  	return val === arrVal;
-  });
-}
 
 
 function add(a, b) {
