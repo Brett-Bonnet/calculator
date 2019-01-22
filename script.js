@@ -65,22 +65,23 @@ operator = arr[i];
 			displayArgs(argsArr.join(''));
 			
 	    } else if (isSecondOper(arr)) { 
-		    const answer = getResult(firstArg, secondArg, operator);
-		    arr = [answer, current];
+		    let answer = getResult(firstArg, secondArg, operator);
 			argsArr.push(current);
-		    displayResult(answer);
+		    displayResult(cleanNum(answer));
 			displayArgs(argsArr.join(''));
+			arr = [answer, current];
 			
 	    }
 	
 	
   } else if (isSecondOper(arr)){
-	  dispArr.clear()
+	  dispArr.clear();
+	  dispArr.push(current);
 	  arr.push(current)
 	  dispArr.push(current)
 	  argsArr.push(current)
-	  displayResult(parseFloat(arr.slice(j).join('')));
-	 
+	  displayResult((arr.slice(j).join('')));
+      	 
 	  
   } else {
 	  arr.push(current)
@@ -127,6 +128,5 @@ function displayArgs(nums) {
 	crntArgs.textContent = nums;
 	
 }
-
 
 
