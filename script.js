@@ -11,9 +11,18 @@ Array.prototype.clear = function() {
 let arguments = {
   firstArg: [],
   operator: '',
-  secondArg: [],	
+  secondArg: [],
+  dispArr: [],
+  argsArr: [],
+  arr: [],  
 }
-let arr = [];
+let arr = arguments.arr;
+let dispArr = arguments.dispArr;
+let argsArr = arguments.argsArr;
+let firstArg = arguments.firstArg;
+let secondArg = arguments.secondArg;
+let operator = arguments.operator;
+
 const operList = ['+', '-', '*', '/'];
 
 
@@ -28,35 +37,56 @@ function runCalc(e) {
 let current = e.target.firstChild.nodeValue;
 let i = arr.findIndex(el => isNaN(el) && el !== '.');
 let j = i + 1;
-let first = arguments.firstArg = parseFloat(arr.slice(0, i).join(''));
-let second = arguments.secondArg = parseFloat(arr.slice(j).join(''));
-let oper = arguments.operator = arr[i];
-
+firstArg = parseFloat(arr.slice(0, i).join(''));
+secondArg = parseFloat(arr.slice(j).join(''));
+operator = arr[i];
+let k = 0;
 
 
 
   if (current === '=') {
-  	 const answer = getResult(first, second, oper);	 
-	 console.log(answer);
-	 displayResult(answer);
+  	 const answer = getResult(firstArg, secondArg, operator);
+     const cleanAnswer = cleanNum(answer);
+	 console.log(cleanAnswer);
+	 displayResult(cleanAnswer);
+	 displayArgs('')
   } else if (current === 'C') {
     arr.clear();
+	dispArr.clear();
+	argsArr.clear();
 	console.log(arr);
 	displayResult('0');
+	displayArgs('')
+	
   } else if (operList.includes(current)) {
 	  if (!isSecondOper(arr)) {
 			arr.push(current);
-			console.log(arr);
+			argsArr.push(current);
+			displayArgs(argsArr.join(''));
+			
 	    } else if (isSecondOper(arr)) { 
-		    const answer = getResult(first, second, oper);
+		    const answer = getResult(firstArg, secondArg, operator);
 		    arr = [answer, current];
+			argsArr.push(current);
 		    displayResult(answer);
+			displayArgs(argsArr.join(''));
+			
 	    }
 	
 	
+  } else if (isSecondOper(arr)){
+	  dispArr.clear()
+	  arr.push(current)
+	  dispArr.push(current)
+	  argsArr.push(current)
+	  displayResult(dispArr.join(''));
+	  console.log(arr);
+	  
   } else {
 	  arr.push(current)
-	  displayResult(arr.join(''));
+	  dispArr.push(current)
+	  argsArr.push(current)
+	  displayResult(dispArr.join(''));
 	  
   }
 }
@@ -75,8 +105,27 @@ function isSecondOper(array) {
   return value;
 }
 
+
+
+function isInt(n) {
+	return n % 1 === 0;
+}
+
+function cleanNum(num) {
+   if (!isInt(num*1)) {
+	   return num.toString().length > 6 ? (num*1).toFixed(7) : num
+   } else {
+	   return num;
+   }
+}
+
 function displayResult(num) {
 	result.textContent = num;
+}
+
+function displayArgs(nums) {
+	crntArgs.textContent = nums;
 	
 }
+
 
