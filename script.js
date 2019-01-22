@@ -114,7 +114,7 @@ function isInt(n) {
 
 function cleanNum(num) {
    if (!isInt(num*1)) {
-	   return num.toString().length > 6 ? (num*1).toFixed(7) : num
+	   return num.toString().length > 7 ? Math.round(100*num)/100 : num
    } else {
 	   return num;
    }
@@ -128,5 +128,6 @@ function displayArgs(nums) {
 	crntArgs.textContent = nums;
 	
 }
+
 
 
