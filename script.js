@@ -17,6 +17,9 @@ let arr = [];
 const operList = ['+', '-', '*', '/'];
 
 
+displayResult('0');
+
+
 numBtn.forEach(button => button.addEventListener('click', runCalc));
 operBtn.forEach(button => button.addEventListener('click', runCalc));
 
@@ -32,30 +35,29 @@ let oper = arguments.operator = arr[i];
 
 
 
-
   if (current === '=') {
   	 const answer = getResult(first, second, oper);	 
 	 console.log(answer);
+	 displayResult(answer);
   } else if (current === 'C') {
     arr.clear();
 	console.log(arr);
+	displayResult('0');
   } else if (operList.includes(current)) {
 	  if (!isSecondOper(arr)) {
-			console.log('first operator');
 			arr.push(current);
 			console.log(arr);
 	    } else if (isSecondOper(arr)) { 
 		    const answer = getResult(first, second, oper);
 		    arr = [answer, current];
-		    console.log(answer);
-		    console.log(arr);
-		    console.log('second operator');
+		    displayResult(answer);
 	    }
 	
 	
   } else {
 	  arr.push(current)
-	  console.log(arr);
+	  displayResult(arr.join(''));
+	  
   }
 }
 
@@ -73,4 +75,8 @@ function isSecondOper(array) {
   return value;
 }
 
+function displayResult(num) {
+	result.textContent = num;
+	
+}
 
