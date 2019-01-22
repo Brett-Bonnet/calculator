@@ -40,7 +40,7 @@ let j = i + 1;
 firstArg = parseFloat(arr.slice(0, i).join(''));
 secondArg = parseFloat(arr.slice(j).join(''));
 operator = arr[i];
-let k = 0;
+
 
 
 
@@ -79,8 +79,8 @@ let k = 0;
 	  arr.push(current)
 	  dispArr.push(current)
 	  argsArr.push(current)
-	  displayResult(dispArr.join(''));
-	  console.log(arr);
+	  displayResult(parseFloat(arr.slice(j).join('')));
+	 
 	  
   } else {
 	  arr.push(current)
@@ -127,5 +127,6 @@ function displayArgs(nums) {
 	crntArgs.textContent = nums;
 	
 }
+
 
 
