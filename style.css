@@ -17,6 +17,7 @@ html {
   border-radius: 20px;
   box-shadow: 5px 5px 5px gray;
 
+
 }
 
 .display {
@@ -30,14 +31,18 @@ html {
   background-image: linear-gradient(to bottom right, #e4b55e, #fdea8f);
   font-family: 'Press Start 2P', cursive;
   position: relative;
+  
 }
 
 #result {
-  	position: absolute;
-	bottom: 0;
-	right: 0;
-	margin-right: 1em;
-    font-size: 200% 	
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 1em;
+  font-size: 200%;
+  width: 320px;
+  text-align: right;
+  overflow: auto;
 }
 
 #arguments {
@@ -46,8 +51,9 @@ html {
 	right: 0;
 	margin-right: 1em;
 	margin-top: 0.5em;
-	
-	
+	width: 320px;
+	text-align: right;
+  overflow: auto;
 }
 
 
