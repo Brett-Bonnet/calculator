@@ -37,8 +37,17 @@ function runCalc(e) {
   let answer = cleanNum(getResult(firstArg, secondArg, operator));
 
   if (current === '=') {
-     displayResult(answer);
-     displayArgs('')
+	 if(operator) {
+		 if (answer === Infinity) {
+	       displayResult("Don't do that");
+           arr.pop();		   
+		 } else {
+			 displayResult(answer);
+             displayArgs('')
+		 }
+	 }  else {
+		 displayResult('ERROR');
+	 }
   } else if (current === 'C') {
       clearCalc();
   } else if (operList.includes(current)) {
@@ -47,23 +56,25 @@ function runCalc(e) {
           pushToArrs(current, arr, argsArr);
           displayArgs(argsArr.join(''));
       
-       } else if (isSecondOper(arr)) { 
-          argsArr.push(current);
-          displayResult(answer);
-          displayArgs(argsArr.join(''));
-          arr = [answer, current];
-       }
-  
-  
+       } else if (isSecondOper(arr)) {
+                if (answer === Infinity) {
+	              displayResult("Don't do that");
+                  arr.pop()				  
+	 	     } else {		   
+             argsArr.push(current);
+             displayResult(answer);
+             displayArgs(argsArr.join(''));
+             arr = [answer, current];
+           }
+	   }
   } else if (isSecondOper(arr)){
     dispArr.clear();
     pushToArrs(current, arr, dispArr, argsArr);
     displayResult((arr.slice(j).join('')));
-         
-    
+	  
   } else {
-    pushToArrs(current, arr, dispArr, argsArr);
-    displayResult(dispArr.join(''));
+	  pushToArrs(current, arr, dispArr, argsArr);
+      displayResult(dispArr.join(''));
   }
 };
 
@@ -116,7 +127,5 @@ function isInt(n) {
 Array.prototype.clear = function() {
     this.splice(0, this.length);
 };
-
-
 
 
