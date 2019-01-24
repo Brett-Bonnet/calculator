@@ -38,8 +38,8 @@ html {
     right: 0;
     width: 320px;
     text-align: right;
-    margin-right: 1em;
-    font-size: 200%;
+    margin-right: 0.4em;
+    font-size: 175%;
     overflow: auto;
 }
 
