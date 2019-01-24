@@ -33,19 +33,25 @@ html {
 }
 
 #result {
-  	position: absolute;
-	bottom: 0;
-	right: 0;
-	margin-right: 1em;
-    font-size: 200% 	
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 320px;
+    text-align: right;
+    margin-right: 1em;
+    font-size: 200%;
+    overflow: auto;
 }
 
 #arguments {
 	position: absolute;
 	top: 0;
 	right: 0;
+	width: 320px;
+	text-align: right;
 	margin-right: 1em;
 	margin-top: 0.5em;
+	overflow: auto;
 	
 	
 }
@@ -100,8 +106,5 @@ button:hover {
   margin-right: auto;
   height: 325px;
   width: 350px;
-  
-
-
-
+ 
 }
