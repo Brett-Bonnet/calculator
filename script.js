@@ -1,47 +1,130 @@
 
+const numBtn = document.querySelectorAll('.numbutton');
+const operBtn = document.querySelectorAll('.operbutton');
+const crntArgs = document.getElementById('arguments');
+const result = document.getElementById('result');
+const equalBtn = document.getElementById('#equals');
+const operList = ['+', '-', '*', '/'];
 
-<!DOCTYPE html>
-<html>
+numBtn.forEach(button => button.addEventListener('click', runCalc));
+operBtn.forEach(button => button.addEventListener('click', runCalc));
 
-<head>
-    <meta charset="utf-8" />
-    <title>Calculator</title>
-    <link rel="stylesheet" type="text/css" href="style.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Unica+One" rel="stylesheet"> 
-</head>
+let arguments = {
+  firstArg: [],
+  operator: '',
+  secondArg: [],
+  dispArr: [],
+  argsArr: [],
+  arr: [],  
+}
 
-<body>
-  <div class="container">
-    <div class="display">
-    <div id="arguments"></div>
-    <div id="result"></div>   
-    </div>
-    
-    <div class="center">
-        <div class="numbers">
-          <button class="numbutton">1</button>
-          <button class="numbutton">2</button>
-          <button class="numbutton">3</button>
-          <button class="numbutton">4</button>
-          <button class="numbutton">5</button>
-          <button class="numbutton">6</button>
-          <button class="numbutton">7</button> 
-          <button class="numbutton">8</button>
-          <button class="numbutton">9</button>
-          <button class="numbutton">0</button>
-          <button class="numbutton" id="dot">.</button>
-      <button class="numbutton" id="equals">=</button>
-          </div>
-        <div class="operators">
-      <button class="operbutton" id="clear">C</button>
-      <button class="operbutton" id="plus">+</button>
-      <button class="operbutton" id="minus">-</button>
-      <button class="operbutton" id="multiply">*</button>
-      <button class="operbutton" id="division">/</button>
-    </div>
-      </div>
-  </div>
-  <script src="script.js"></script> 
-    
-</body>
-</html>
+let arr = arguments.arr;
+let dispArr = arguments.dispArr;
+let argsArr = arguments.argsArr;
+let firstArg = arguments.firstArg;
+let secondArg = arguments.secondArg;
+let operator = arguments.operator;
+
+displayResult('0');
+
+function runCalc(e) {
+  let current = e.target.firstChild.nodeValue;
+  let i = arr.findIndex(el => isNaN(el) && el !== '.');
+  let j = i + 1;
+  firstArg = parseFloat(arr.slice(0, i).join(''));
+  secondArg = parseFloat(arr.slice(j).join(''));
+  operator = arr[i];
+  let answer = cleanNum(getResult(firstArg, secondArg, operator));
+
+  if (current === '=') {
+	 if(operator) {
+		 if (answer === Infinity) {
+	       displayResult("Don't do that");
+           arr.pop();		   
+		 } else {
+			 displayResult(answer);
+             displayArgs('')
+		 }
+	 }  else {
+		 displayResult('ERROR');
+	 }
+  } else if (current === 'C') {
+      clearCalc();
+  } else if (operList.includes(current)) {
+      
+      if (!isSecondOper(arr)) {
+          pushToArrs(current, arr, argsArr);
+          displayArgs(argsArr.join(''));
+      
+       } else if (isSecondOper(arr)) {
+                if (answer === Infinity) {
+	              displayResult("Don't do that");
+                  arr.pop()				  
+	 	     } else {		   
+             argsArr.push(current);
+             displayResult(answer);
+             displayArgs(argsArr.join(''));
+             arr = [answer, current];
+           }
+	   }
+  } else if (isSecondOper(arr)){
+    dispArr.clear();
+    pushToArrs(current, arr, dispArr, argsArr);
+    displayResult((arr.slice(j).join('')));
+	  
+  } else {
+	  pushToArrs(current, arr, dispArr, argsArr);
+      displayResult(dispArr.join(''));
+  }
+};
+
+
+function getResult(a, b, c) {
+    return c === '+' ? a + b
+       : c === '-' ? a - b
+       : c === '*' ? a * b
+       : c === '/' ? a / b
+       : false;     
+}
+
+function displayResult(num) {
+  result.textContent = num;
+}
+
+function cleanNum(num) {
+   if (!isInt(num*1)) {
+     return num.toString().length > 7 ? Math.round(100*num)/100 : num
+   } else {
+     return num;
+   }
+}
+
+function displayArgs(nums) {
+  crntArgs.textContent = nums;
+}
+
+function clearCalc() {
+  arr.clear();
+  dispArr.clear();
+  argsArr.clear();
+  displayResult('0');
+  displayArgs('');
+}
+
+function pushToArrs(curr, ...arrs) {
+   const push = arrs.forEach(array => array.push(curr));
+}
+
+function isSecondOper(array) {
+  let value = /\+|\-|\*|\//.test(array);
+  return value;
+}
+
+function isInt(n) {
+  return n % 1 === 0;
+}
+
+Array.prototype.clear = function() {
+    this.splice(0, this.length);
+};
+
