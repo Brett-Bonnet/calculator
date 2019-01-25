@@ -10,8 +10,8 @@ html {
 .container {  
   background-image: url("green_cup.png");
   margin: auto;
-  height: 500px;
-  width: 400px;
+  height: 600px;
+  width: 500px;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
   border-radius: 20px;
@@ -22,8 +22,8 @@ html {
 .display {
   padding-top: 5px;
   border-radius: 10px;
-  width: 350px;
-  height: 100px;
+  width: 450px;
+  height: 130px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 1.5em;
@@ -36,40 +36,43 @@ html {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 340px;
+    width: 435px;
+    font-stretch: condensed;
     text-align: right;
-    margin-right: 0.4em;
-    font-size: 175%;
+    margin-right: 0.5em;
+    margin-bottom: 0.2em;
+    font-size: 215%;
     overflow: auto;
 }
 
 #arguments {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 320px;
-	text-align: right;
-	margin-right: 1em;
-	margin-top: 0.5em;
-	overflow: auto;
-	
-	
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 435px;
+  text-align: right;
+  margin-right: 1em;
+  margin-top: 0.5em;
+  font-size: 110%;
+  overflow: auto;
+  
+  
 }
 
 
 .numbers {
   display: grid;
-  grid-template-columns: 67px 67px 67px 67px;
-  grid-template-rows: 33% 33% 33%;
-  height: 325px;
+  grid-template-columns: 85px 85px 85px 85px;
+  grid-template-rows: 33.3% 33.3% 33.3%;
+  height: 400px;
   width: 270px;
 }
 
 .operators {
   display: grid;
-  height: 325px;
-  width: 80px;
-    
+  height: 400px;
+  width: 110px;
+  margin-left: auto;  
   
 }
 
@@ -83,10 +86,10 @@ button {
 }
 
 button:hover {
-	transform: scale(1.025);
-	
-	
-	
+  transform: scale(1.025);
+  
+  
+  
 }
 
 .numbutton {
@@ -95,16 +98,16 @@ button:hover {
 }
 
 .operbutton {
-	background-image: linear-gradient(to bottom right, #ca8d42, #ffff67);
-	
+  background-image: linear-gradient(to bottom right, #ca8d42, #ffff67);
+  
 }
 
 .center {
   display: flex;
-  margin-top: 1em;  
+  margin-top: 1.3em;  
   margin-left: auto;
   margin-right: auto;
-  height: 325px;
-  width: 350px;
+  height: 400px;
+  width: 450px;
  
 }
