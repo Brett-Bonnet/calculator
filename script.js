@@ -5,9 +5,12 @@ const crntArgs = document.getElementById('arguments');
 const result = document.getElementById('result');
 const equalBtn = document.getElementById('#equals');
 const operList = ['+', '-', '*', '/'];
+const btn = document.querySelectorAll('button');
 
 numBtn.forEach(button => button.addEventListener('click', runCalc));
 operBtn.forEach(button => button.addEventListener('click', runCalc));
+window.addEventListener('keydown', runCalc);
+
 
 let arguments = {
   firstArg: [],
@@ -28,7 +31,10 @@ let operator = arguments.operator;
 displayResult('0');
 
 function runCalc(e) {
-  let current = e.target.firstChild.nodeValue;
+  let key = document.querySelector(`button[data-key="${e.keyCode}"]`)
+  let keyValue = key.textContent;
+  let current = e.target.firstChild.nodeValue && keyValue;
+  console.log(keyValue);
   let i = arr.findIndex(el => isNaN(el) && el !== '.');
   let j = i + 1;
   firstArg = parseFloat(arr.slice(0, i).join(''));
@@ -37,17 +43,17 @@ function runCalc(e) {
   let answer = cleanNum(getResult(firstArg, secondArg, operator));
 
   if (current === '=') {
-	 if(operator) {
-		 if (answer === Infinity) {
-	       displayResult("Don't do that");
-           arr.pop();		   
-		 } else {
-			 displayResult(answer);
+   if(operator) {
+     if (answer === Infinity) {
+         displayResult("Don't do that");
+           arr.pop();      
+     } else {
+       displayResult(answer);
              displayArgs('')
-		 }
-	 }  else {
-		 displayResult('ERROR');
-	 }
+     }
+   }  else {
+     displayResult('ERROR');
+   }
   } else if (current === 'C') {
       clearCalc();
   } else if (operList.includes(current)) {
@@ -58,22 +64,22 @@ function runCalc(e) {
       
        } else if (isSecondOper(arr)) {
                 if (answer === Infinity) {
-	              displayResult("Don't do that");
-                  arr.pop()				  
-	 	     } else {		   
+                displayResult("Don't do that");
+                  arr.pop()         
+         } else {      
              argsArr.push(current);
              displayResult(answer);
              displayArgs(argsArr.join(''));
              arr = [answer, current];
            }
-	   }
+     }
   } else if (isSecondOper(arr)){
     dispArr.clear();
     pushToArrs(current, arr, dispArr, argsArr);
     displayResult((arr.slice(j).join('')));
-	  
+    
   } else {
-	  pushToArrs(current, arr, dispArr, argsArr);
+    pushToArrs(current, arr, dispArr, argsArr);
       displayResult(dispArr.join(''));
   }
 };
@@ -127,4 +133,3 @@ function isInt(n) {
 Array.prototype.clear = function() {
     this.splice(0, this.length);
 };
-
