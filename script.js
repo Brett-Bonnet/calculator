@@ -9,7 +9,7 @@ const btn = document.querySelectorAll('button');
 
 numBtn.forEach(button => button.addEventListener('click', runCalc));
 operBtn.forEach(button => button.addEventListener('click', runCalc));
-window.addEventListener('keydown', runCalc);
+
 
 
 let arguments = {
@@ -31,10 +31,7 @@ let operator = arguments.operator;
 displayResult('0');
 
 function runCalc(e) {
-  let key = document.querySelector(`button[data-key="${e.keyCode}"]`)
-  let keyValue = key.textContent;
-  let current = e.target.firstChild.nodeValue && keyValue;
-  console.log(keyValue);
+  let current = e.target.firstChild.nodeValue;
   let i = arr.findIndex(el => isNaN(el) && el !== '.');
   let j = i + 1;
   firstArg = parseFloat(arr.slice(0, i).join(''));
